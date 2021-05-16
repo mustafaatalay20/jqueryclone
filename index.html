@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+</style>
+
+<body>
+  
+<div class="container">
+  <p><b>İlk Satırın çoğalmasını sağlayın</b> ve her çoğaldığında tr alanın rengi değişsin sil deyince bulunduğu alanı silsin. Her clone arttığında selectin namesini değişmesini sağlayın sorgu[1] > sorgu[2] şeklinde <a href="#cogalt" class="btn btn-success btncogalt">Çoğalt</a> buradaki butonla çoğaltılmasını sağlayabilirsiniz. Kolay gelsin :)
+  </p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>İşlem</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><select name="sorgu[0]">
+          <option value="0">Seçiniz</option>
+          <option value="0">Deneme</option>
+        </select></td>
+        <td>Defaultson</td>
+        <td>def@somemail.com</td>
+        <td><a href="#cogalt" class="btn btn-danger btnsil">Sil</a></td>
+      </tr>      
+      <tr class="table-primary">
+        <td><select name="sorgu[1]">
+          <option value="0">Seçiniz</option>
+          <option value="0">Deneme</option>
+        </select></td>
+        <td>Joe</td>
+        <td>joe@example.com</td>
+        <td><a href="#cogalt" class="btn btn-danger btnsil">Sil</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
+
+<script>
+
+    $(".table").on('click','.btnsil',function(){
+        var tr = $(this).parent().parent();//Satıra erişmek için
+        tr.fadeOut(500, function(){
+            tr.remove();
+            var sorgu=$("select")
+	          for(i=0;i<sorgu.length;i++)
+	          {
+	              sorgu.eq(i).attr("name","sorgu["+i+"]")
+	          } 
+        }); 
+    $("tr:odd").css("background-color", "#ffffff");
+    $("tr:even").css("background-color", "#B8DAFF");    
+
+    });
+
+    $(".btncogalt").click(function(){ 
+	  var $firstRow = $("tbody tr:first"); 
+    var $newRow = $firstRow.clone(); //klonlama  
+    $firstRow.after($newRow); //başa yeni satır ekleme
+    //$('tbody tr:even:not(:first)').css('background-color','#ededed');
+    $("tr:even").css("background-color", "#ffffff");
+    $("tr:odd").css("background-color", "#B8DAFF");
+   
+	var sorgu=$("select")
+	
+	for(i=0;i<sorgu.length;i++)
+	{
+	   sorgu.eq(i).attr("name","sorgu["+i+"]")
+	}
+	
+})
+</script>
+
+
+
